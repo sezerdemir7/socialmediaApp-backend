@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quest-app
+spec:
+  selector:
+    matchLabels:
+      app: socialApp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: socialApp
+    spec:
+      containers:
+        - name: socialApp
+          image: demirrs/sclapp:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8081
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 200m
+              memory: 1Gi
+            limits:
+              cpu: 1
+              memory: 1Gi
